@@ -1,5 +1,5 @@
 export enum Morality {
-  NEURAL = "Neural",
+  NEUTRAL = "Neutral",
   GOOD = "Good",
   EVIL = "Evil",
 }
