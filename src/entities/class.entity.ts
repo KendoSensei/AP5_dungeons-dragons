@@ -10,8 +10,8 @@ export class Class {
   constructor(
     id: number,
     name: string,
-    proficiencies: Proficiencies[],
-    proficienciesToChoose: Proficiencies[],
+    proficiencies: Proficiency[],
+    proficienciesToChoose: Proficiency[],
     savingThrows: SavingThrows[],
     spells: Spell[],
     levelZeroSpells: Spell[],
