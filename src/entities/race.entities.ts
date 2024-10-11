@@ -2,7 +2,7 @@ type RaceDependencies = {
   id: number;
   name: String;
   taille: number;
-  subraces: Subspecies[];
+  subraces: Subraces[];
   proficiency: Proficiency[];
   proficiencesToChoose: Proficiency[];
   languages: String[];
@@ -15,7 +15,7 @@ export class Race {
   private _id: number;
   private _name: String;
   private _taille: number;
-  private _subraces: Subspecies[];
+  private _subraces: Subraces[];
   private _proficiency: Proficiency[];
   private _proficiencesToChoose: Proficiency[];
   private _languages: String[];
@@ -59,7 +59,7 @@ export class Race {
     return this._taille;
   }
 
-  get subraces(): Subspecies[] {
+  get subraces(): Subraces[] {
     return this._subraces;
   }
 
