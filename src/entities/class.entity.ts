@@ -1,5 +1,6 @@
 import { Proficiency } from "./proficiency.entity";
 import { Spell } from "./spell.entity";
+import { SavingThrows } from "../enum/saving-throws.enum";
 
 export class Class {
   id: number;
