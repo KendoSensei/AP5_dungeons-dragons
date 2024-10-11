@@ -91,7 +91,7 @@ export class Race {
     this.subraces.push(subspecies);
   }
 
-  chooseProficiency(): void {}
+  chooseProficiency(): void {/* to be implemented */}
 
-  chooseLanguage(): void {}
+  chooseLanguage(): void {/* to be implemented */}
 }
