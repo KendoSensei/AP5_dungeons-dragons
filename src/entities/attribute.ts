@@ -7,7 +7,7 @@ type attributeDependencies = {
   charisma: number;
 };
 
-export class attribute {
+export class Attribute {
   private _strenght: number;
   private _dexterity: number;
   private _constitution: number;
