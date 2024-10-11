@@ -1,25 +1,27 @@
+import { Proficiency } from "./proficiency.entity";
+
 type RaceDependencies = {
   id: number;
-  name: String;
+  name: string;
   taille: number;
   subraces: Subraces[];
   proficiency: Proficiency[];
   proficiencesToChoose: Proficiency[];
-  languages: String[];
-  languagesToChoose: String[];
+  languages: string[];
+  languagesToChoose: string[];
   traits: Trait[];
   attributesBonus: Attribute;
 };
 
 export class Race {
   private _id: number;
-  private _name: String;
+  private _name: string;
   private _taille: number;
   private _subraces: Subraces[];
   private _proficiency: Proficiency[];
   private _proficiencesToChoose: Proficiency[];
-  private _languages: String[];
-  private _languagesToChoose: String[];
+  private _languages: string[];
+  private _languagesToChoose: string[];
   private _traits: Trait[];
   private _attributesBonus: Attribute;
 
@@ -51,7 +53,7 @@ export class Race {
     return this._id;
   }
 
-  get name(): String {
+  get name(): string {
     return this._name;
   }
 
@@ -71,11 +73,11 @@ export class Race {
     return this._proficiencesToChoose;
   }
 
-  get languages(): String[] {
+  get languages(): string[] {
     return this._languages;
   }
 
-  get languagesToChoose(): String[] {
+  get languagesToChoose(): string[] {
     return this._languagesToChoose;
   }
 
@@ -91,7 +93,11 @@ export class Race {
     this.subraces.push(subspecies);
   }
 
-  chooseProficiency(): void {/* to be implemented */}
+  chooseProficiency(): void {
+    /* to be implemented */
+  }
 
-  chooseLanguage(): void {/* to be implemented */}
+  chooseLanguage(): void {
+    /* to be implemented */
+  }
 }
