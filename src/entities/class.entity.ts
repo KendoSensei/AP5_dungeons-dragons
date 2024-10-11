@@ -1,8 +1,10 @@
+import { Proficiency } from "./proficiency.entity";
+
 export class Class {
   id: number;
   private _name: string;
-  private _proficiencies: Proficiencies[];
-  private _proficienciesToChoose: Proficiencies[];
+  private _proficiencies: Proficiency[];
+  private _proficienciesToChoose: Proficiency[];
   private _savingThrows: SavingThrows[];
   private _spells: Spell[];
   private _levelZeroSpells: Spell[];
@@ -33,11 +35,11 @@ export class Class {
     return this._name;
   }
 
-  get proficiencies(): Proficiencies[] {
+  get proficiencies(): Proficiency[] {
     return this._proficiencies;
   }
 
-  get proficienciesToChoose(): Proficiencies[] {
+  get proficienciesToChoose(): Proficiency[] {
     return this._proficienciesToChoose;
   }
 
