@@ -37,8 +37,56 @@ export class character {
     return this._name;
   }
 
+  set name(value: string) {
+    this._name = value;
+  }
+
   get image(): string {
     return this._image;
+  }
+
+  set image(value: string) {
+    this._image = value;
+  }
+
+  get race(): Race {
+    return this._race;
+  }
+
+  set race(value: Race) {
+    this._race = value;
+  }
+
+  get alignment(): Alignment {
+    return this._alignment;
+  }
+
+  set alignment(value: Alignment) {
+    this._alignment = value;
+  }
+
+  get attributes(): Attributes {
+    return this._attributes;
+  }
+
+  set attributes(value: Attributes) {
+    this._attributes = value;
+  }
+
+  get skills(): Skills {
+    return this._skills;
+  }
+
+  set skills(value: Skills) {
+    this._skills = value;
+  }
+
+  get equipment(): Equipment {
+    return this._equipment;
+  }
+
+  set equipment(value: Equipment) {
+    this._equipment = value;
   }
 
   addskill(skill: Skill): void {
