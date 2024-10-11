@@ -1,4 +1,5 @@
 import { Proficiency } from "./proficiency.entity";
+import { Spell } from "./spell.entity";
 
 export class Class {
   id: number;
