@@ -1,22 +1,27 @@
+import { Race } from "./race.entities";
+import { RaceDependencies } from "./race.entities";
+
 type subracesDependencies = {
-  name: string;
-  traits: Trait[];
+  race: RaceDependencies;
+  subName: string;
+  subTraits: Trait[];
 };
 
-export class Subraces {
-  private _name: string;
-  private _traits: Trait[];
+export class Subraces extends Race {
+  private _subName: string;
+  private _subTraits: Trait[];
 
-  constructor({ name, traits }: subracesDependencies) {
-    this._name = name;
-    this._traits = traits;
+  constructor({ race, subName, subTraits }: subracesDependencies) {
+    super(race);
+    this._subName = subName;
+    this._subTraits = subTraits;
   }
 
-  get name(): String {
-    return this._name;
+  get subName(): string {
+    return this._subName;
   }
 
-  get traits(): Trait[] {
-    return this._traits;
+  get subTraits(): Trait[] {
+    return this._subTraits;
   }
 }
