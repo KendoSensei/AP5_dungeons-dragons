@@ -1,4 +1,4 @@
-type attributeDependencies = {
+type AttributeDependencies = {
   strenght: number;
   dexterity: number;
   constitution: number;
@@ -14,7 +14,7 @@ export class Attribute {
   private _intelligence: number;
   private _wisdom: number;
   private _charisma: number;
-  constructor({ strenght, dexterity, constitution, intelligence, wisdom, charisma }: attributeDependencies) {
+  constructor({ strenght, dexterity, constitution, intelligence, wisdom, charisma }: AttributeDependencies) {
     this._strenght = strenght;
     this._dexterity = dexterity;
     this._constitution = constitution;
