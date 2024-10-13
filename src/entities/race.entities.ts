@@ -92,7 +92,7 @@ export class Race {
 
   addSubraces(subraces: Subraces): void {
     this.subraces.push(subraces);
-  }
+
 
   chooseProficiency(): void {
     /* to be implemented */
