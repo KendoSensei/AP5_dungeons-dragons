@@ -1,6 +1,7 @@
 import { Proficiency } from "./proficiency.entity";
+import { Subraces } from "./subraces.entity";
 
-type RaceDependencies = {
+export type RaceDependencies = {
   id: number;
   name: string;
   taille: number;
@@ -89,9 +90,9 @@ export class Race {
     return this._attributesBonus;
   }
 
-  addSubspecies(subspecies: Subspecies): void {
-    this.subraces.push(subspecies);
-  }
+  addSubraces(subraces: Subraces): void {
+    this.subraces.push(subraces);
+
 
   chooseProficiency(): void {
     /* to be implemented */
