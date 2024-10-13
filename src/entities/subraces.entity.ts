@@ -1,7 +1,7 @@
 import { Race } from "./race.entities";
 import { RaceDependencies } from "./race.entities";
 
-type subracesDependencies = {
+type SubracesDependencies = {
   race: RaceDependencies;
   subName: string;
   subTraits: Trait[];
@@ -11,7 +11,7 @@ export class Subraces extends Race {
   private _subName: string;
   private _subTraits: Trait[];
 
-  constructor({ race, subName, subTraits }: subracesDependencies) {
+  constructor({ race, subName, subTraits }: SubracesDependencies) {
     super(race);
     this._subName = subName;
     this._subTraits = subTraits;
