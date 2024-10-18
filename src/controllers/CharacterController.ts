@@ -1,10 +1,18 @@
-import { CharacterService } from "../services/CharacterService";
 import { Character } from "../entities/character.entity";
+import { FindCharacterUseCase } from "../usecase/FindCharacterUseCase";
 
 export class CharacterController {
-  constructor(private readonly characterService: CharacterService) {}
+  private findCharacterUseCase: FindCharacterUseCase;
+
+  constructor(findCharacterUseCase: FindCharacterUseCase) {
+    this.findCharacterUseCase = findCharacterUseCase;
+  }
+
+  findCharacter(): void {
+    this.findCharacterUseCase.execute();
+  }
 
   createCharacter(character: Character): Character {
-    return this.characterService.createCharacter(character);
+    return character;
   }
 }
