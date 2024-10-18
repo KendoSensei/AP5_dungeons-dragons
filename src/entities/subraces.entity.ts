@@ -4,12 +4,12 @@ import { RaceDependencies } from "./race.entities";
 type SubracesDependencies = {
   race: RaceDependencies;
   subName: string;
-  subTraits: Trait[];
+  subTraits: string[];
 };
 
 export class Subraces extends Race {
   private _subName: string;
-  private _subTraits: Trait[];
+  private _subTraits: string[];
 
   constructor({ race, subName, subTraits }: SubracesDependencies) {
     super(race);
@@ -21,7 +21,7 @@ export class Subraces extends Race {
     return this._subName;
   }
 
-  get subTraits(): Trait[] {
+  get subTraits(): string[] {
     return this._subTraits;
   }
 }

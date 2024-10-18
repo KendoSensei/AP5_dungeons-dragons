@@ -1,5 +1,5 @@
-import { Morality } from "../enum/morality.ts";
-import { Order } from "../enum/order.ts";
+import { Morality } from "../enum/morality.enum";
+import { Order } from "../enum/order.enum";
 
 export class Alignment {
   private _morale: Morality;
@@ -13,6 +13,7 @@ export class Alignment {
   public get morale(): Morality {
     return this._morale;
   }
+
   public get order(): Order {
     return this._order;
   }

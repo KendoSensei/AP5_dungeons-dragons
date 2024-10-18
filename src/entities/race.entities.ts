@@ -1,5 +1,6 @@
 import { Proficiency } from "./proficiency.entity";
 import { Subraces } from "./subraces.entity";
+import { Attribute } from "./attribute";
 
 export type RaceDependencies = {
   id: number;
@@ -10,7 +11,7 @@ export type RaceDependencies = {
   proficiencesToChoose: Proficiency[];
   languages: string[];
   languagesToChoose: string[];
-  traits: Trait[];
+  traits: string[];
   attributesBonus: Attribute;
 };
 
@@ -23,7 +24,7 @@ export class Race {
   private _proficiencesToChoose: Proficiency[];
   private _languages: string[];
   private _languagesToChoose: string[];
-  private _traits: Trait[];
+  private _traits: string[];
   private _attributesBonus: Attribute;
 
   constructor({
@@ -82,7 +83,7 @@ export class Race {
     return this._languagesToChoose;
   }
 
-  get traits(): Traits[] {
+  get traits(): string[] {
     return this._traits;
   }
 
@@ -92,7 +93,7 @@ export class Race {
 
   addSubraces(subraces: Subraces): void {
     this.subraces.push(subraces);
-
+  }
 
   chooseProficiency(): void {
     /* to be implemented */
