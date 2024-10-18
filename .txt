@@ -1,4 +1,0 @@
-npm start ==> to run
-
-
-curl http://locahost:3000/curl ==> to curl data of the api 
