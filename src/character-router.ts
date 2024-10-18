@@ -1,12 +1,41 @@
-import { Character } from "entities/character.entity";
 import { Router, Request, Response } from "express";
-import { getCharacterInfo } from "services/ClassService";
+import { ClassService } from "./services/ClassService";
 
 export const router = Router();
+const classService: ClassService = new ClassService();
 
-router.get("/:character", (request: Request, response: Response) => {
+router.get(`/features/:character`, async (request: Request, response: Response) => {
   const character = request.params.character;
-  getCharacterInfo(character);
+  const feature = await classService.getFeatures(character);
 
-  response.send(`Character: ${Character}`);
+  response.json(feature);
+});
+
+router.get(`/spells/:character`, async (request: Request, response: Response) => {
+  const character = request.params.character;
+  const spells = await classService.getSpells(character);
+
+  response.json(spells);
+});
+
+router.get(`/subclasses/:character`, async (request: Request, response: Response) => {
+  const character = request.params.character;
+  const subclasses = await classService.getSubClasse(character);
+
+  response.json(subclasses);
+});
+
+router.get(`/ressources/:character`, async (request: Request, response: Response) => {
+  const character = request.params.character;
+  const ressources = await classService.getLevelRessources(character);
+  console.log("aaaaaa", ressources);
+
+  response.json(ressources);
+});
+
+router.get(`/proficiencies/:character`, async (request: Request, response: Response) => {
+  const character = request.params.character;
+  const proficiencies = await classService.getProfienciencies(character);
+
+  response.json(proficiencies);
 });

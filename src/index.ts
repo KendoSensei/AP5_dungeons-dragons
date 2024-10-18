@@ -6,6 +6,6 @@ const application: Application = express();
 
 application.use(morgan("tiny"));
 
-application.use("/character", router);
+application.use("/", router);
 
 application.listen(3000, () => console.log("c'est good !"));
