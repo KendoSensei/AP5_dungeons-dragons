@@ -1,23 +1,51 @@
-import axios from "axios"; // Importer axios pour faire des requêtes HTTP
-
-export class getSubClassInfos {
-  className: string;
-
-  // Constructeur qui prend en paramètre className
-  constructor(className: string) {
-    this.className = className;
+export class ClassService {
+  async getSubClasse(className: string) {
+    const res = await fetch(`https://www.dnd5eapi.co/api/classes/${className}/subclasses`);
+    const bodyResponse = await res.json();
+    return bodyResponse;
   }
-
-  // Méthode pour faire l'appel GET et renvoyer les données JSON
-  async getClassData(): Promise<unknown> {
-    const apiUrl = `https://www.dnd5eapi.co/api/classes/${this.className}/subclasses`;
-
+  async getSpells(className: string) {
+    const res = await fetch(`https://www.dnd5eapi.co/api/classes/${className}/spells`);
+    const bodyResponse = await res.json();
+    return bodyResponse;
+  }
+  async getFeatures(className: string) {
+    const res = await fetch(`https://www.dnd5eapi.co/api/classes/${className}/features`);
+    const bodyResponse = await res.json();
+    return bodyResponse;
+  }
+  async getProfiencies(className: string) {
+    const res = await fetch(`https://www.dnd5eapi.co/api/classes/${className}/proficiencies`);
+    const bodyResponse = await res.json();
+    return bodyResponse;
+  }
+  async getLevelRessources(className: string) {
+    const res = await fetch(`https://www.dnd5eapi.co/api/classes/${className}/levels`);
+    const bodyResponse = await res.json();
+    return bodyResponse;
+  }
+  async allGet(className: string) {
     try {
-      const response = await axios.get(apiUrl); // Effectuer l'appel GET
-      return response.data; // Renvoyer les données JSON
+      // Utilisation de Promise.all pour exécuter toutes les promesses en parallèle
+      const [subclasses, spells, features, proficiencies, ressources] = await Promise.all([
+        this.getSubClasse(className),
+        this.getSpells(className),
+        this.getFeatures(className),
+        this.getProfiencies(className),
+        this.getLevelRessources(className),
+      ]);
+
+      // Renvoie des résultats sous forme d'objet
+      return {
+        subclasses,
+        spells,
+        features,
+        proficiencies,
+        ressources,
+      };
     } catch (error) {
-      console.error("Error fetching data from API:", error);
-      throw new Error("API request failed");
+      console.error("Erreur lors de la récupération des données :", error);
+      throw error;
     }
   }
 }
