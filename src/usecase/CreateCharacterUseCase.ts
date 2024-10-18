@@ -1,4 +1,3 @@
-import { error } from "console";
 import { Character } from "entities/character.entity";
 import { CharacterService } from "services/CharacterService";
 
@@ -13,7 +12,7 @@ export class CreateCharacterUseCase {
     try {
       this.characterService.createCharacter(character);
     } catch (e: unknown) {
-      throw new Error("respect les types parce que la t'es ma cuti");
+      throw new Error("respect les types parce que la t'es ma cuti: " + (e as Error).message);
     }
   }
 }
