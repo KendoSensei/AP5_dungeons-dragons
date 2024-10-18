@@ -1,6 +1,6 @@
 import axios from "axios"; // Importer axios pour faire des requêtes HTTP
 
-class getSubClassInfos {
+export class getSubClassInfos {
   className: string;
 
   // Constructeur qui prend en paramètre className
