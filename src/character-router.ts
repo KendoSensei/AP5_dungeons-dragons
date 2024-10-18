@@ -35,7 +35,14 @@ router.get(`/ressources/:character`, async (request: Request, response: Response
 
 router.get(`/proficiencies/:character`, async (request: Request, response: Response) => {
   const character = request.params.character;
-  const proficiencies = await classService.getProfienciencies(character);
+  const proficiencies = await classService.getProfiencies(character);
 
   response.json(proficiencies);
+});
+
+router.get(`/allGet/:character`, async (request: Request, response: Response) => {
+  const character = request.params.character;
+  const allGet = await classService.allGet(character);
+
+  response.json(allGet);
 });

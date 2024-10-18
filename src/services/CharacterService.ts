@@ -1,8 +1,11 @@
 import { Character } from "../entities/character.entity";
 
 export class CharacterService {
-  createCharacter(character: Character): Character {
-    console.log("Character created");
-    return character;
+  async createCharacter(character: Character) {
+    await fetch(`postCharacter`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ character }),
+    });
   }
 }
