@@ -40,9 +40,8 @@ router.get(`/proficiencies/:character`, async (request: Request, response: Respo
   response.json(proficiencies);
 });
 
-router.get(`/allGet/:character`, async (request: Request, response: Response) => {
-  const character = request.params.character;
-  const allGet = await classService.allGet(character);
+router.get(`/allGet/`, async (_request: Request, response: Response) => {
+  const allGet = await classService.allGet();
 
   response.json(allGet);
 });
