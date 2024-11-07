@@ -1,6 +1,7 @@
-import { Race } from "./race.entities";
+import { Race } from "./race.entity";
 import { Alignment } from "./alignment.entity";
 import { Attribute } from "./attribute";
+import { ClassEntity } from "./class.entity";
 
 export class Character {
   private _name: string;
@@ -8,13 +9,22 @@ export class Character {
   private _race: Race;
   private _alignment: Alignment;
   private _attributes: Attribute;
+  private _class: ClassEntity;
 
-  constructor(name: string, image: string, race: Race, alignment: Alignment, attributes: Attribute) {
+  constructor(
+    name: string,
+    image: string,
+    race: Race,
+    alignment: Alignment,
+    attributes: Attribute,
+    charClass: ClassEntity,
+  ) {
     this._name = name;
     this._image = image;
     this._race = race;
     this._alignment = alignment;
     this._attributes = attributes;
+    this._class = charClass;
   }
 
   get name(): string {
@@ -37,11 +47,7 @@ export class Character {
     return this._attributes;
   }
 
-  modifyattribute(attribute: Attribute): void {
-    this._attributes = attribute;
+  get charClass(): ClassEntity {
+    return this._class;
   }
-
-  saveToUserAccount(): void {}
-
-  getPDF(): void {}
 }

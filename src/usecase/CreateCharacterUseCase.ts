@@ -1,5 +1,11 @@
-import { Character } from "entities/character.entity";
-import { CharacterService } from "services/CharacterService";
+import { Character } from "../entities/character.entity";
+import { CharacterService } from "../services/CharacterService";
+
+export interface Result<T> {
+  success: boolean;
+  data?: T;
+  error?: string;
+}
 
 export class CreateCharacterUseCase {
   private characterService: CharacterService;
@@ -8,11 +14,20 @@ export class CreateCharacterUseCase {
     this.characterService = characterService;
   }
 
-  async execute(character: Character) {
+  async execute(character: Character): Promise<{
+    data: Character | Promise<undefined>;
+    success: boolean;
+    error: string;
+  }> {
     try {
-      this.characterService.createCharacter(character);
-    } catch (e: unknown) {
-      throw new Error("respect les types parce que la t'es ma cuti: " + (e as Error).message);
+      const createdCharacter = await this.characterService.createCharacter(character);
+      return { data: createdCharacter, success: true, error: "" };
+    } catch (error) {
+      return {
+        data: Promise.resolve(undefined),
+        success: false,
+        error: "Failed to create character: " + (error as Error).message,
+      };
     }
   }
 }

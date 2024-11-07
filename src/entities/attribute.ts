@@ -1,31 +1,26 @@
-type AttributeDependencies = {
-  strenght: number;
-  dexterity: number;
-  constitution: number;
-  intelligence: number;
-  wisdom: number;
-  charisma: number;
-};
+import { IAttributes } from "../interfaces/attribute.interface";
 
 export class Attribute {
-  private _strenght: number;
+  private _strength: number;
   private _dexterity: number;
   private _constitution: number;
   private _intelligence: number;
   private _wisdom: number;
   private _charisma: number;
-  constructor({ strenght, dexterity, constitution, intelligence, wisdom, charisma }: AttributeDependencies) {
-    this._strenght = strenght;
-    this._dexterity = dexterity;
-    this._constitution = constitution;
-    this._intelligence = intelligence;
-    this._wisdom = wisdom;
-    this._charisma = charisma;
+
+  constructor(data: IAttributes) {
+    this._strength = data.strength;
+    this._dexterity = data.dexterity;
+    this._constitution = data.constitution;
+    this._intelligence = data.intelligence;
+    this._wisdom = data.wisdom;
+    this._charisma = data.charisma;
   }
 
-  public get strenght(): number {
-    return this._strenght;
+  public get strength(): number {
+    return this._strength;
   }
+
   public get dexterity(): number {
     return this._dexterity;
   }

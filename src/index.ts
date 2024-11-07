@@ -1,11 +1,18 @@
-import express, { Application } from "express";
-import morgan from "morgan";
-import { router } from "./character-router";
+import express from "express";
+import characterRouter from "./character-router";
 
-const application: Application = express();
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-application.use(morgan("tiny"));
+app.use(express.json());
+app.use("/api", characterRouter);
 
-application.use("/character", router);
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+app.use((error: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
+  console.error(error);
+  res.status(500).json({ error: "Internal server error" });
+});
 
-application.listen(3000, () => console.log("c'est good !"));
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});

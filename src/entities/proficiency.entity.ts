@@ -1,19 +1,15 @@
+import { IProficiency } from "../interfaces/proficiency.interface";
+
 export class Proficiency {
-  id: number;
-  private _name: string;
-  private _description: string;
+  index?: string;
+  name?: string;
+  url?: string;
+  level?: number;
 
-  constructor(id: number, name: string, description: string) {
-    this.id = id;
-    this._name = name;
-    this._description = description;
-  }
-
-  get name(): string {
-    return this._name;
-  }
-
-  get description(): string {
-    return this._description;
+  constructor(data: IProficiency) {
+    this.index = data.index;
+    this.name = data.name;
+    this.url = data.url;
+    if (data.level) this.level = data.level;
   }
 }
