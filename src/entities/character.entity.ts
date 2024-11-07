@@ -1,6 +1,6 @@
 import { Race } from "./race.entity";
 import { Alignment } from "./alignment.entity";
-import { Attribute } from "./attribute";
+import { Attributes } from "./attributes.entity";
 import { ClassEntity } from "./class.entity";
 
 export class Character {
@@ -8,7 +8,7 @@ export class Character {
   private _image: string;
   private _race: Race;
   private _alignment: Alignment;
-  private _attributes: Attribute;
+  private _attributes: Attributes;
   private _class: ClassEntity;
 
   constructor(
@@ -16,7 +16,7 @@ export class Character {
     image: string,
     race: Race,
     alignment: Alignment,
-    attributes: Attribute,
+    attributes: Attributes,
     charClass: ClassEntity,
   ) {
     this._name = name;
@@ -43,7 +43,7 @@ export class Character {
     return this._alignment;
   }
 
-  get attributes(): Attribute {
+  get attributes(): Attributes {
     return this._attributes;
   }
 

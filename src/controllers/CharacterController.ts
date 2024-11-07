@@ -6,7 +6,7 @@ import { Race } from "../entities/race.entity";
 import { Alignment } from "../entities/alignment.entity";
 import { Order } from "../enum/order.enum";
 import { Morality } from "../enum/morality.enum";
-import { Attribute } from "../entities/attribute";
+import { Attributes } from "../entities/attributes.entity";
 import { ClassEntity } from "../entities/class.entity";
 import { DataService } from "../data/DataService";
 import { IAttributes } from "../interfaces/attribute.interface";
@@ -48,7 +48,7 @@ export class CharacterController {
         image,
         new Race((await this.dataService.getRace(race.toLowerCase()))!),
         new Alignment(orderStr as Order, moralityStr as Morality),
-        new Attribute(attributes),
+        new Attributes(attributes),
         new ClassEntity((await this.dataService.getClass(classname.toLowerCase()))!),
       );
 

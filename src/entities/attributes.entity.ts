@@ -1,6 +1,6 @@
 import { IAttributes } from "../interfaces/attribute.interface";
 
-export class Attribute {
+export class Attributes {
   private _strength: number;
   private _dexterity: number;
   private _constitution: number;

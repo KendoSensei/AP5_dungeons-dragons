@@ -1,5 +1,4 @@
 import { Proficiency } from "./proficiency.entity";
-import { SavingThrows } from "../enum/saving-throws.enum";
 import { IStartingEquipment } from "../interfaces/starting-equipment.interface";
 import { IStartingEquipmentOption } from "../interfaces/starting-equipment-option.interface";
 import { IProficiencyChoice } from "../interfaces/proficiency.interface";
@@ -11,6 +10,7 @@ import { IClass } from "../interfaces/class.interface";
 import { StartingEquipment } from "./starting-equipment.entity";
 import { StartingEquipmentOption } from "./starting-equipment-option.entity";
 import { ISubclass } from "../interfaces/subclass.interface";
+import { SavingThrows } from "./saving-throws.entity";
 
 export class ClassEntity {
   id?: string;
@@ -39,7 +39,7 @@ export class ClassEntity {
     this._startingEquipmentOptions = data.starting_equipment_options;
     this._proficiencyChoices = data.proficiency_choices;
     this._proficiencies = data.proficiencies;
-    // this._savingThrows = data.saving_throws?.map((savingThrow) => SavingThrows[savingThrow.index]);
+    this._savingThrows = data.saving_throws?.map((savingThrow) => new SavingThrows(savingThrow));
     if (data.subclasses) this.initializeSubclasses(data.subclasses);
   }
 
