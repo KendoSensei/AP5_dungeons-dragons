@@ -21,11 +21,21 @@ export async function validateAlignmentMiddleware(req: Request, _res: Response, 
     const characterAlignment = new Alignment(order, morality);
 
     const alignmentsList = await dataService.getAlignments();
-    const alignmentIndex = `${characterAlignment.order.toLowerCase()}-${characterAlignment.morale.toLowerCase()}`;
+    let alignmentIndex: string;
+    if (morality === undefined) {
+      alignmentIndex = `${characterAlignment.order.toLowerCase()}`;
+    } else if (order === undefined) {
+      alignmentIndex = `${characterAlignment.morale.toLowerCase()}`;
+    } else {
+      alignmentIndex = `${characterAlignment.order.toLowerCase()}-${characterAlignment.morale.toLowerCase()}`;
+    }
     const isValid = alignmentsList?.results.some((align) => align.index === alignmentIndex);
 
     if (!isValid) {
-      const error = new Error("Alignment not valid");
+      const error = new Error(
+        "Alignment not valid, choose one of the following: " +
+          alignmentsList?.results.map((align) => align.name).join(", "),
+      );
       return next(error);
     }
     next();
