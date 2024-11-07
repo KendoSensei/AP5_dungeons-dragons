@@ -1,21 +1,21 @@
 import { Character } from "../entities/character.entity";
 import { CharacterService } from "../services/CharacterService";
 
-export class CreateCharacterUseCase {
+export class GetCharactersUseCase {
   private characterService: CharacterService;
 
   constructor(characterService: CharacterService) {
     this.characterService = characterService;
   }
 
-  async execute(character: Character): Promise<{
-    data: Character | Promise<undefined>;
+  async execute(): Promise<{
+    data: Character[] | Promise<undefined>;
     success: boolean;
     error: string;
   }> {
     try {
-      const createdCharacter = await this.characterService.createCharacter(character);
-      return { data: createdCharacter, success: true, error: "" };
+      const characters = await this.characterService.getCharacters();
+      return { data: characters, success: true, error: "" };
     } catch (error) {
       return {
         data: Promise.resolve(undefined),

@@ -10,6 +10,7 @@ import { Attribute } from "../entities/attribute";
 import { ClassEntity } from "../entities/class.entity";
 import { DataService } from "../data/DataService";
 import { IAttributes } from "../interfaces/attribute.interface";
+import { GetCharactersUseCase } from "../usecase/GetCharactersUseCase";
 
 interface CreateCharacterRequestBody {
   name: string;
@@ -23,11 +24,17 @@ interface CreateCharacterRequestBody {
 export class CharacterController {
   private getCreationInfoUseCase: GetCreationInfoUseCase;
   private createCharacterUseCase: CreateCharacterUseCase;
+  private getCharactersUseCase: GetCharactersUseCase;
   private dataService: DataService = new DataService();
 
-  constructor(getCreationInfoUseCase: GetCreationInfoUseCase, createCharacterUseCase: CreateCharacterUseCase) {
+  constructor(
+    getCreationInfoUseCase: GetCreationInfoUseCase,
+    createCharacterUseCase: CreateCharacterUseCase,
+    getCharactersUseCase: GetCharactersUseCase,
+  ) {
     this.getCreationInfoUseCase = getCreationInfoUseCase;
     this.createCharacterUseCase = createCharacterUseCase;
+    this.getCharactersUseCase = getCharactersUseCase;
   }
 
   async createCharacter(req: Request<object, object, CreateCharacterRequestBody>) {
@@ -39,10 +46,10 @@ export class CharacterController {
       const character = new Character(
         name,
         image,
-        new Race((await this.dataService.getRace(race))!),
+        new Race((await this.dataService.getRace(race.toLowerCase()))!),
         new Alignment(orderStr as Order, moralityStr as Morality),
         new Attribute(attributes),
-        new ClassEntity((await this.dataService.getClass(classname))!),
+        new ClassEntity((await this.dataService.getClass(classname.toLowerCase()))!),
       );
 
       return await this.createCharacterUseCase.execute(character);
@@ -53,5 +60,9 @@ export class CharacterController {
 
   async getCreationInfo() {
     return await this.getCreationInfoUseCase.execute();
+  }
+
+  async getCharacters() {
+    return await this.getCharactersUseCase.execute();
   }
 }
