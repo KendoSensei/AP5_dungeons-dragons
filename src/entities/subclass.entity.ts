@@ -7,8 +7,8 @@ export class Subclass extends ClassEntity {
   subname?: string;
   url?: string;
 
-  constructor(data: ISubclass) {
-    super(data);
+  constructor(className: string, data: ISubclass) {
+    super({ ...data, name: className });
     this.index = data.index;
     this.level = data.level;
     this.subname = data.subname;

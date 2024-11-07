@@ -1,22 +1,21 @@
 import { Race } from "./race.entity";
 import { ISubrace } from "../interfaces/subrace.interface";
-import { ITrait } from "../interfaces/trait.interface";
 
 export class Subrace extends Race {
   private _subName?: string;
-  private _subTraits?: ITrait[];
+  index?: string;
+  url?: string;
+  level?: number;
 
-  constructor(data: ISubrace) {
-    super(data);
+  constructor(racename: string, data: ISubrace) {
+    super({ ...data, name: racename });
     this._subName = data.subname;
-    this._subTraits = data.traits;
+    this.index = data.index;
+    this.url = data.url;
+    this.level = data.level;
   }
 
   get subName(): string {
     return <string>this._subName;
-  }
-
-  get subTraits(): ITrait[] {
-    return <ITrait[]>this._subTraits;
   }
 }

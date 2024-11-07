@@ -15,12 +15,12 @@ export class CreateCharacterUseCase {
   }
 
   async execute(character: Character): Promise<{
-    data: Promise<Awaited<undefined | Character>>;
+    data: Character | Promise<undefined>;
     success: boolean;
     error: string;
   }> {
     try {
-      const createdCharacter = this.characterService.createCharacter(character);
+      const createdCharacter = await this.characterService.createCharacter(character);
       return { data: createdCharacter, success: true, error: "" };
     } catch (error) {
       return {

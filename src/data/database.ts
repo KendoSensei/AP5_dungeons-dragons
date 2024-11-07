@@ -1,6 +1,7 @@
 import { JsonDB, Config } from "node-json-db";
 import { join } from "path";
 import { Character } from "../entities/character.entity";
+import * as console from "node:console";
 
 const dbPath = join(__dirname, "../../db");
 
@@ -13,6 +14,7 @@ async function initializeDb() {
       db.push("/characters", []);
     }
   } catch (error) {
+    console.log(error);
     await db.push("/characters", []);
   }
 }

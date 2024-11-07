@@ -5,11 +5,6 @@ export class CharacterService {
   async createCharacter(character: Character): Promise<Character> {
     const characters = (await db.getData("/characters")) as Character[];
 
-    const existingCharacter = characters.find((char) => char.name === character.name);
-    if (existingCharacter) {
-      throw new Error("Character with the same name already exists");
-    }
-
     characters.push(character);
     db.push("/characters", characters, true);
 

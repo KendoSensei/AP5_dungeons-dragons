@@ -1,6 +1,6 @@
 import { IAttributes } from "../interfaces/attribute.interface";
 
-export class AttributeEntity {
+export class Attribute {
   private _strength: number;
   private _dexterity: number;
   private _constitution: number;
@@ -8,13 +8,13 @@ export class AttributeEntity {
   private _wisdom: number;
   private _charisma: number;
 
-  constructor({ strength, dexterity, constitution, intelligence, wisdom, charisma }: IAttributes) {
-    this._strength = strength;
-    this._dexterity = dexterity;
-    this._constitution = constitution;
-    this._intelligence = intelligence;
-    this._wisdom = wisdom;
-    this._charisma = charisma;
+  constructor(data: IAttributes) {
+    this._strength = data.strength;
+    this._dexterity = data.dexterity;
+    this._constitution = data.constitution;
+    this._intelligence = data.intelligence;
+    this._wisdom = data.wisdom;
+    this._charisma = data.charisma;
   }
 
   public get strength(): number {

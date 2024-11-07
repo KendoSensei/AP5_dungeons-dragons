@@ -10,6 +10,7 @@ import { Subclass } from "./subclass.entity";
 import { IClass } from "../interfaces/class.interface";
 import { StartingEquipment } from "./starting-equipment.entity";
 import { StartingEquipmentOption } from "./starting-equipment-option.entity";
+import { ISubclass } from "../interfaces/subclass.interface";
 
 export class ClassEntity {
   id?: string;
@@ -39,7 +40,7 @@ export class ClassEntity {
     this._proficiencyChoices = data.proficiency_choices;
     this._proficiencies = data.proficiencies;
     // this._savingThrows = data.saving_throws?.map((savingThrow) => SavingThrows[savingThrow.index]);
-    this._subclasses = data.subclasses?.map((subclass) => new Subclass(subclass));
+    if (data.subclasses) this.initializeSubclasses(data.subclasses);
   }
 
   get name(): string {
@@ -88,5 +89,15 @@ export class ClassEntity {
 
   get subclasses(): Subclass[] | undefined {
     return this._subclasses;
+  }
+
+  private async initializeSubclasses(subclassesData: ISubclass[] = []) {
+    const module = await import("./subclass.entity");
+    this._subclasses = await Promise.all(
+      subclassesData.map(async (subclassData) => {
+        const Subclass = module.Subclass;
+        return new Subclass(this.name, subclassData);
+      }),
+    );
   }
 }

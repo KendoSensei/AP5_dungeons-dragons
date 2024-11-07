@@ -1,5 +1,6 @@
 import { AlignmentsResponse } from "../interfaces/alignment.interface";
 import { IRace, RacesResponse } from "../interfaces/race.interface";
+import { ClassesResponse } from "../interfaces/class.interface";
 
 export class DataService {
   private baseUrl = "https://www.dnd5eapi.co";
@@ -15,8 +16,7 @@ export class DataService {
 
   async getRace(name: string) {
     try {
-      const res = await this.fetchData<IRace>("/api/races/" + name);
-      return res;
+      return await this.fetchData<IRace>("/api/races/" + name);
     } catch (error) {
       console.log(error);
       return null;
@@ -27,27 +27,20 @@ export class DataService {
     return await this.fetchData<RacesResponse>("/api/races");
   }
 
+  async getClass(name: string) {
+    try {
+      return await this.fetchData<IRace>("/api/classes/" + name);
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
+
   async getClasses() {
-    return await this.fetchData("/api/classes");
+    return await this.fetchData<ClassesResponse>("/api/classes");
   }
 
   async getAlignments(): Promise<AlignmentsResponse | null> {
     return await this.fetchData<AlignmentsResponse>("/api/alignments");
-  }
-
-  async getSkills() {
-    return await this.fetchData("/api/skills");
-  }
-
-  async getTraits() {
-    return await this.fetchData("/api/traits");
-  }
-
-  async getProficiencies() {
-    return await this.fetchData("/api/proficiencies");
-  }
-
-  async getSubraces() {
-    return await this.fetchData("/api/subraces");
   }
 }

@@ -1,10 +1,11 @@
+import { ProficiencyOptions } from "./proficiency-options.entity";
+import { Subrace } from "./subrace.entity";
+import { ISubrace } from "../interfaces/subrace.interface";
 import { IRace } from "../interfaces/race.interface";
 import { AbilityBonus } from "./ability-bonus.entity";
 import { Proficiency } from "./proficiency.entity";
-import { ProficiencyOptions } from "./proficiency-options.entity";
-import { Subrace } from "./subrace.entity";
-import { Trait } from "./trait.entity";
 import { Language } from "./language.entity";
+import { Trait } from "./trait.entity";
 
 export class Race {
   index?: string;
@@ -41,6 +42,16 @@ export class Race {
     if (race.languages) this.languages = race.languages;
     if (race.language_desc) this.language_desc = race.language_desc;
     if (race.traits) this.traits = race.traits;
-    if (race.subraces) this.subraces = race.subraces.map((subrace) => new Subrace(subrace));
+    if (race.subraces) this.initializeSubraces(race.subraces);
+  }
+
+  private async initializeSubraces(subracesData: ISubrace[] = []) {
+    const module = await import("./subrace.entity");
+    this.subraces = await Promise.all(
+      subracesData.map(async (subraceData) => {
+        const Subrace = module.Subrace;
+        return new Subrace(this.name, subraceData);
+      }),
+    );
   }
 }

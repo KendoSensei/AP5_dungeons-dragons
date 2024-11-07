@@ -23,3 +23,8 @@ export interface IClass {
   saving_throws?: ISavingThrows[];
   subclasses?: ISubclass[];
 }
+
+export interface ClassesResponse {
+  count: number;
+  results: IClass[];
+}
