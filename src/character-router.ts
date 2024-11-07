@@ -8,13 +8,20 @@ import { CharacterService } from "./services/CharacterService";
 import { DataService } from "./data/DataService";
 import { validateAttributesMiddleware } from "./middleware/validateAttributesMiddleware";
 import { validateClassMiddleware } from "./middleware/validateClassMiddlware";
+import { GetCharactersUseCase } from "./usecase/GetCharactersUseCase";
+import { validateCharacterMiddleware } from "./middleware/validateCharacterMiddleware";
 
 const router = express.Router();
 const dataService = new DataService();
 const characterService = new CharacterService();
 const getCreationInfoUseCase = new GetCreationInfoUseCase(dataService);
 const createCharacterUseCase = new CreateCharacterUseCase(characterService);
-const characterController = new CharacterController(getCreationInfoUseCase, createCharacterUseCase);
+const getCharactersUseCase = new GetCharactersUseCase(characterService);
+const characterController = new CharacterController(
+  getCreationInfoUseCase,
+  createCharacterUseCase,
+  getCharactersUseCase,
+);
 
 router.get("/creation-info", async (_req, res, next) => {
   try {
@@ -25,8 +32,18 @@ router.get("/creation-info", async (_req, res, next) => {
   }
 });
 
+router.get("/characters", async (_req, res, next) => {
+  try {
+    const characters = await characterController.getCharacters();
+    res.json(characters);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.post(
   "/characters",
+  validateCharacterMiddleware,
   validateRaceMiddleware,
   validateAlignmentMiddleware,
   validateAttributesMiddleware,
