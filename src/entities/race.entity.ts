@@ -1,6 +1,10 @@
 import { IRace } from "../interfaces/race.interface";
 import { AbilityBonus } from "./ability-bonus.entity";
 import { Proficiency } from "./proficiency.entity";
+import { ProficiencyOptions } from "./proficiency-options.entity";
+import { Subrace } from "./subrace.entity";
+import { Trait } from "./trait.entity";
+import { Language } from "./language.entity";
 
 export class Race {
   index?: string;
@@ -21,21 +25,22 @@ export class Race {
   subraces?: Subrace[];
 
   constructor(race: IRace) {
-    this.index = race.index;
-    this.level = race.level;
+    if (race.index) this.index = race.index;
+    if (race.level) this.level = race.level;
     this.name = race.name;
-    this.url = race.url;
-    this.speed = race.speed;
-    this.ability_bonuses = race.ability_bonuses;
-    this.alignment = race.alignment;
-    this.age = race.age;
-    this.size = race.size;
-    this.size_description = race.size_description;
-    this.starting_proficiencies = race.starting_proficiencies;
-    this.starting_proficiency_options = race.starting_proficiency_options;
-    this.languages = race.languages;
-    this.language_desc = race.language_desc;
-    this.traits = race.traits;
-    this.subraces = race.subraces;
+    if (race.url) this.url = race.url;
+    if (race.speed) this.speed = race.speed;
+    if (race.ability_bonuses) this.ability_bonuses = race.ability_bonuses;
+    if (race.alignment) this.alignment = race.alignment;
+    if (race.age) this.age = race.age;
+    if (race.size) this.size = race.size;
+    if (race.size_description) this.size_description = race.size_description;
+    if (race.starting_proficiencies) this.starting_proficiencies = race.starting_proficiencies;
+    if (race.starting_proficiency_options)
+      this.starting_proficiency_options = new ProficiencyOptions(race.starting_proficiency_options);
+    if (race.languages) this.languages = race.languages;
+    if (race.language_desc) this.language_desc = race.language_desc;
+    if (race.traits) this.traits = race.traits;
+    if (race.subraces) this.subraces = race.subraces.map((subrace) => new Subrace(subrace));
   }
 }

@@ -1,0 +1,18 @@
+{
+  "characters": [
+    {
+      "_name": "Aragorn",
+      "_image": "http://example.com/aragorn.jpg",
+      "_race": "dragonborn",
+      "_alignment": "Lawful Good",
+      "_attributes": {
+        "strength": 18,
+        "dexterity": 13,
+        "constitution": 14,
+        "intelligence": 10,
+        "wisdom": 12,
+        "charisma": 15
+      }
+    }
+  ]
+}

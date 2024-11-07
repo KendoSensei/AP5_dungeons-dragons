@@ -1,18 +1,25 @@
 import { Character } from "../entities/character.entity";
-import { FindCharacterUseCase } from "../usecase/FindCharacterUseCase";
+import { GetCreationInfoUseCase } from "../usecase/GetCreationInfoUseCase";
+import { CreateCharacterUseCase } from "../usecase/CreateCharacterUseCase";
 
 export class CharacterController {
-  private findCharacterUseCase: FindCharacterUseCase;
+  private getCreationInfoUseCase: GetCreationInfoUseCase;
+  private createCharacterUseCase: CreateCharacterUseCase;
 
-  constructor(findCharacterUseCase: FindCharacterUseCase) {
-    this.findCharacterUseCase = findCharacterUseCase;
+  constructor(getCreationInfoUseCase: GetCreationInfoUseCase, createCharacterUseCase: CreateCharacterUseCase) {
+    this.getCreationInfoUseCase = getCreationInfoUseCase;
+    this.createCharacterUseCase = createCharacterUseCase;
   }
 
-  findCharacter(): void {
-    this.findCharacterUseCase.execute();
+  async createCharacter(character: Character): Promise<{
+    data: Promise<Awaited<Character | undefined>>;
+    success: boolean;
+    error: string;
+  }> {
+    return this.createCharacterUseCase.execute(character);
   }
 
-  createCharacter(character: Character): Character {
-    return character;
+  async getCreationInfo() {
+    return await this.getCreationInfoUseCase.execute();
   }
 }

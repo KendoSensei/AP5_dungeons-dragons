@@ -5,7 +5,7 @@ export class Alignment {
   private _morale: Morality;
   private _order: Order;
 
-  constructor(morale: Morality, order: Order) {
+  constructor(order: Order, morale: Morality) {
     this._morale = morale;
     this._order = order;
   }
