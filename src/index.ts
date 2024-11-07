@@ -9,8 +9,7 @@ app.use("/api", characterRouter);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((error: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
-  console.error(error);
-  res.status(500).json({ error: "Internal server error" });
+  res.status(500).json({ error: error.message });
 });
 
 app.listen(PORT, () => {

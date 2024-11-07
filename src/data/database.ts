@@ -13,8 +13,9 @@ async function initializeDb() {
     if (!characters) {
       db.push("/characters", []);
     }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
-    console.log(error);
+    console.log("Creating characters database");
     await db.push("/characters", []);
   }
 }
